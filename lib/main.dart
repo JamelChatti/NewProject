@@ -22,28 +22,56 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-
-  var info = 'Gestion facture';
+String value = 'Bonjour';
+String value1 = 'c\'est le bouton 2';
+  var info = 'RaisedButton';
 @override
   void initState() {
     // TODO: implement initState
     super.initState();
     info= 'BIENVENUE';
   }
+  void onclick(){
+  setState(() {
+    value = 'Tuto RaisedButton';
+  });
+  }
+
+void onclick2(String value2){
+  setState(() {
+    value1 = value2;
+  });
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(info),
       ),
-      body: RaisedButton(
-        child: Text('Valider'),
-        onPressed: (){
-          print('Validation OK!');
-          setState(() {
-            info ='Gestion facture';
-          });
-        },
+      body:  Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget> [
+        RaisedButton(
+          child: Text('bouton 1', style: TextStyle(color: Colors.green),
+          ),
+          onPressed:() => onclick(),
+        ),
+        Text(value, style: TextStyle(color: Colors.blue, fontSize: 40,),
+
+        ),
+        Divider(height: 10,),
+
+        RaisedButton(
+          child: Text('bouton 2', style: TextStyle(color: Colors.blue),
+          ),
+          onPressed: (){
+            onclick2('Tuto pour les debutants');
+          },
+        ),
+         Text(value1, style: TextStyle(color: Colors.green, fontSize: 40,),)
+
+      ],
       ),
     );
 
