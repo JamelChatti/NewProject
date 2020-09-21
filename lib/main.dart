@@ -44,7 +44,19 @@ class _GestionFactureState extends State<GestionFacture> {
     }
       Column column =Column(children: _Button_radio,);
       return column;
-
+  }
+  Widget radioList(){
+    List<Widget> _Button_radio_List = new List();
+    for(int i =0; i<4; i++){
+      _Button_radio_List.add(
+          RadioListTile(value:i, groupValue: val2 , onChanged:change2 ,
+            activeColor: Colors.red,
+          controlAffinity: ListTileControlAffinity.trailing,
+          title: Text('Choix $i'),)
+      );
+    }
+    Column column =Column(children: _Button_radio_List,);
+    return column;
   }
 
   @override
@@ -71,6 +83,7 @@ class _GestionFactureState extends State<GestionFacture> {
                     ),
               ),
                 radio(),
+              radioList(),
             ],
           ),
         ));
