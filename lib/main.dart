@@ -21,48 +21,58 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-  String value = '';
+  int val1 = 0;
+  int val2 = 0;
 
-  void onshow() {
+  void change1(int s) {
     setState(() {
-      value = new DateTime.now().toString();
+      val1 = s;
     });
+  }
+
+  void change2(int t) {
+    setState(() {
+      val2 = t;
+    });
+  }
+  Widget radio(){
+    List<Widget> _Button_radio = new List();
+    for(int i =0; i<4; i++){
+      _Button_radio.add(
+        Radio(value:i, groupValue: val1 , onChanged:change1 ,)
+      );
+    }
+      Column column =Column(children: _Button_radio,);
+      return column;
+
   }
 
   @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('FloatingActionButton'),
-      ),
-      body: Column(
-        children: <Widget>[
-          Text(
-            'La date du jour et l\'heure' ,
-            style: TextStyle(
-              fontSize: 30,
-              color: Colors.indigo,
-            ),
-            textAlign: TextAlign.center,
-                      ),
-           Text(
-        '= $value',
-        style: TextStyle(
-          fontSize: 30,
-          color: Colors.red,
+        appBar: AppBar(
+          title: Text('Bouton radio'),
         ),
-        textAlign: TextAlign.center,
-           )
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: onshow,
-        backgroundColor: Colors.red,
-        label: Text('Time'),
-        icon: Icon(Icons.timer),
-        //child: Icon(Icons.timer),
-      ),
-    );
+        body: Center(
+          child: Column(
+            children: <Widget>[
+               Text(
+                'Bienvenue chez Pharmacie Chatti',
+                style: TextStyle(
+                    height:2,
+                    fontSize: 18,
+                    color: Colors.green,
+                   fontWeight: FontWeight.bold,
+                  //  fontStyle: FontStyle.italic,
+                 // decoration: TextDecoration.underline,
+                //  decorationColor: Colors.red,
+
+                    ),
+              ),
+                radio(),
+            ],
+          ),
+        ));
   }
 }
