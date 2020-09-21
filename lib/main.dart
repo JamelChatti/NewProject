@@ -62,7 +62,7 @@ class _GestionFactureState extends State<GestionFacture> {
 
         IconButton(
           icon: Icon(Icons.thumb_down, color: Colors.red, size: 60,),
-          tooltip: 'je n\'aime pas',
+          tooltip: 'je n\'aime pas ',
           onPressed: (){
             setState(() {
 
