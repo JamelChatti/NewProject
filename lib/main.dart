@@ -21,69 +21,52 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-  int val1 = 0;
-  int val2 = 0;
+  bool val1 = false;
+  bool val2 = false;
+  bool val3 = false;
 
-  void change1(int s) {
+  void change1(bool s) {
     setState(() {
       val1 = s;
     });
   }
 
-  void change2(int t) {
+  void change2(bool t) {
     setState(() {
       val2 = t;
     });
   }
-  Widget radio(){
-    List<Widget> _Button_radio = new List();
-    for(int i =0; i<4; i++){
-      _Button_radio.add(
-        Radio(value:i, groupValue: val1 , onChanged:change1 ,)
-      );
-    }
-      Column column =Column(children: _Button_radio,);
-      return column;
+  void change3(bool z) {
+    setState(() {
+      val3 = z;
+    });
   }
-  Widget radioList(){
-    List<Widget> _Button_radio_List = new List();
-    for(int i =0; i<4; i++){
-      _Button_radio_List.add(
-          RadioListTile(value:i, groupValue: val2 , onChanged:change2 ,
-            activeColor: Colors.red,
-          controlAffinity: ListTileControlAffinity.trailing,
-          title: Text('Choix $i'),)
-      );
-    }
-    Column column =Column(children: _Button_radio_List,);
-    return column;
-  }
+
 
   @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Bouton radio'),
+          title: Text('Check Box'),
         ),
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-               Text(
-                'Bienvenue chez Pharmacie Chatti',
-                style: TextStyle(
-                    height:2,
-                    fontSize: 18,
-                    color: Colors.green,
-                   fontWeight: FontWeight.bold,
-                  //  fontStyle: FontStyle.italic,
-                 // decoration: TextDecoration.underline,
-                //  decorationColor: Colors.red,
-
-                    ),
+              Text(
+                'Bienvenue chez pharmacie Chatti',
+                style: TextStyle(fontSize: 18, color: Colors.deepPurple),
               ),
-                radio(),
-              radioList(),
+              Checkbox(value:val1 ,onChanged: change1,),
+              CheckboxListTile(value: val2,onChanged: change2,
+              title: Text('Capital du Canada') ,
+              controlAffinity: ListTileControlAffinity.trailing ,
+              subtitle: Text('Ottawa'),),
+              CheckboxListTile(value: val3,onChanged: change3,
+                title: Text('Capital des USA') ,
+                controlAffinity: ListTileControlAffinity.trailing ,
+                subtitle: Text('Wachinton'),)
             ],
           ),
         ));
