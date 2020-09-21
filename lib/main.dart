@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main()=> runApp(MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,7 +10,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-        home: GestionFacture(),
+      home: GestionFacture(),
     );
   }
 }
@@ -22,59 +21,48 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-  int note = 0;
+  String value = '';
 
-@override
+  void onshow() {
+    setState(() {
+      value = new DateTime.now().toString();
+    });
+  }
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bienvenue'),
+        title: Text('FloatingActionButton'),
       ),
-      body:  Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget> [
-        FlatButton(
-          onPressed: (){
-            debugPrint('---Bouton flat ok-----');
-              },
-          child: Text('Bouton flat', style: TextStyle(color: Colors.white, fontSize: 20,),),
-          color: Colors.blue,
+      body: Column(
+        children: <Widget>[
+          Text(
+            'La date du jour et l\'heure' ,
+            style: TextStyle(
+              fontSize: 30,
+              color: Colors.indigo,
+            ),
+            textAlign: TextAlign.center,
+                      ),
+           Text(
+        '= $value',
+        style: TextStyle(
+          fontSize: 30,
+          color: Colors.red,
         ),
-
-        IconButton(
-          icon: Icon(Icons.thumb_up, color: Colors.green, size: 60,),
-          tooltip: 'j\'aime',
-          onPressed: (){
-            setState(() {
-
-            });
-            note+=1;
-          },
-        ),
-
-
-        Text('Votre point de vue: $note', style: TextStyle(color: Colors.indigo, fontSize: 20,),
-
-        ),
-
-
-        IconButton(
-          icon: Icon(Icons.thumb_down, color: Colors.red, size: 60,),
-          tooltip: 'je n\'aime pas ',
-          onPressed: (){
-            setState(() {
-
-            });
-            note-=1;
-          },
-        ),
-
-
-      ],
+        textAlign: TextAlign.center,
+           )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: onshow,
+        backgroundColor: Colors.red,
+        label: Text('Time'),
+        icon: Icon(Icons.timer),
+        //child: Icon(Icons.timer),
       ),
     );
-
   }
 }
