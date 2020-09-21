@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter demo',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.amber,
       ),
       home: GestionFacture(),
     );
@@ -23,7 +23,7 @@ class GestionFacture extends StatefulWidget {
 class _GestionFactureState extends State<GestionFacture> {
   bool val1 = false;
   bool val2 = false;
-  bool val3 = false;
+  double val3 = 0.0;
 
   void change1(bool s) {
     setState(() {
@@ -36,37 +36,52 @@ class _GestionFactureState extends State<GestionFacture> {
       val2 = t;
     });
   }
-  void change3(bool z) {
+
+  void change3(double z) {
     setState(() {
       val3 = z;
     });
   }
-
 
   @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Check Box'),
+          title: Text('Slider & Swich'),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'Bienvenue chez pharmacie Chatti',
-                style: TextStyle(fontSize: 18, color: Colors.deepPurple),
+              Switch(
+                value: val1,
+                onChanged: change1,
+                activeColor: Colors.green,
               ),
-              Checkbox(value:val1 ,onChanged: change1,),
-              CheckboxListTile(value: val2,onChanged: change2,
-              title: Text('Capital du Canada') ,
-              controlAffinity: ListTileControlAffinity.trailing ,
-              subtitle: Text('Ottawa'),),
-              CheckboxListTile(value: val3,onChanged: change3,
-                title: Text('Capital des USA') ,
-                controlAffinity: ListTileControlAffinity.trailing ,
-                subtitle: Text('Wachinton'),)
+              SwitchListTile(
+                value: val2,
+                onChanged: change2,
+                activeColor: Colors.red,
+                title: Text(
+                  'Valider interripteur',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Text(
+                'Valider curseur${(val3*100).round()}',
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.cyan,
+                    fontWeight: FontWeight.bold),
+              ),
+              Slider(
+                value: val3,
+                onChanged: change3,
+              )
             ],
           ),
         ));
