@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter demo',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
+        primarySwatch: Colors.brown,
       ),
       home: GestionFacture(),
     );
@@ -21,25 +21,17 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-  bool val1 = false;
-  bool val2 = false;
-  double val3 = 0.0;
+  String value = ' ';
 
-  void change1(bool s) {
+  void submit(String a) {
     setState(() {
-      val1 = s;
+      value = 'Message envoyé $a';
     });
   }
 
-  void change2(bool t) {
+  void affichage(String b) {
     setState(() {
-      val2 = t;
-    });
-  }
-
-  void change3(double z) {
-    setState(() {
-      val3 = z;
+      value = 'Bienvenue $b';
     });
   }
 
@@ -48,40 +40,53 @@ class _GestionFactureState extends State<GestionFacture> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Slider & Swich'),
+          title: Text('Tuto TextField'),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Switch(
-                value: val1,
-                onChanged: change1,
-                activeColor: Colors.green,
+
+              Text(value, style: TextStyle(fontSize: 20, color: Colors.blue),
+                textAlign: TextAlign.center,),
+              TextField(decoration: InputDecoration(
+                  labelText: 'Nom',
+                  hintText: 'Entrer votre nom',
+                  icon: Icon(Icons.person, color: Colors.deepPurple, size: 50,)
               ),
-              SwitchListTile(
-                value: val2,
-                onChanged: change2,
-                activeColor: Colors.red,
-                title: Text(
-                  'Valider interripteur',
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
-                ),
+                keyboardType: TextInputType.text,
+                autocorrect: true,
+                autofocus: true,
+                onChanged: affichage,
+                onSubmitted: submit,
               ),
-              Text(
-                'Valider curseur${(val3*100).round()}',
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.cyan,
-                    fontWeight: FontWeight.bold),
+              TextFormField(decoration: InputDecoration(
+                  labelText: 'Prenom',
+                  hintText: 'Entrer votre prenom',
+                  icon: Icon(
+                    Icons.perm_identity, color: Colors.deepPurple, size: 50,)
               ),
-              Slider(
-                value: val3,
-                onChanged: change3,
-              )
+                keyboardType: TextInputType.text,
+              ),
+
+              TextField(decoration: InputDecoration(
+                  labelText: 'Phone',
+                  hintText: 'Entrer votre numero de Téléphone',
+                  icon: Icon(Icons.phone, color: Colors.deepPurple, size: 50,)
+              ),
+                keyboardType: TextInputType.number,
+              ),
+
+              TextField(decoration: InputDecoration(
+                  labelText: 'Mot de passe',
+                  hintText: 'Entrer votre Mot de passe',
+                  icon: Icon(Icons.lock, color: Colors.red, size: 50,)
+              ),
+                keyboardType: TextInputType.text,
+                obscureText: true,
+              ),
+
+
             ],
           ),
         ));
