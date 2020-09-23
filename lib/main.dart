@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -6,10 +7,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter demo',
-      theme: ThemeData(
-        primarySwatch: Colors.brown,
-      ),
+      //   primarySwatch: Colors.blue,
+      // theme: ThemeData(
+      // ),
       home: GestionFacture(),
     );
   }
@@ -21,72 +23,62 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-  String value = ' ';
 
-  void submit(String a) {
-    setState(() {
-      value = 'Message envoyé $a';
-    });
-  }
-
-  void affichage(String b) {
-    setState(() {
-      value = 'Bienvenue $b';
-    });
-  }
-
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Tuto TextField'),
+          backgroundColor: Colors.cyan,
+          title: Text('Tuto AppBar'),
+          centerTitle: true,
+          actions: <Widget>[
+            Icon(
+              Icons.thumb_up,
+              size: 35,
+            ),
+          ],
+
+        ),
+        drawer: ListView(padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text(
+          'Programe & framework',
+          style: TextStyle(fontSize: 25, color: Colors.red
+              ),
+            ),
+              decoration: BoxDecoration(color: Colors.black),
+            ),
+            ListTile(title: Text('Dart') ,onTap: (){
+              Navigator.pop(context);
+            },),
+
+            ListTile(title: Text('Java') ,onTap: (){
+              Navigator.pop(context);
+            },),
+
+            ListTile(title: Text('Swift') ,onTap: (){
+              Navigator.pop(context);
+            },),
+
+            ListTile(title: Text('Objecti-C') ,onTap: (){
+              Navigator.pop(context);
+            },),
+
+            ListTile(title: Text('Foxpro') ,onTap: (){
+              Navigator.pop(context);
+            },),
+
+            ListTile(title: Text('C++') ,onTap: (){
+              Navigator.pop(context);
+            },),
+          ],
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-
-              Text(value, style: TextStyle(fontSize: 20, color: Colors.blue),
-                textAlign: TextAlign.center,),
-              TextField(decoration: InputDecoration(
-                  labelText: 'Nom',
-                  hintText: 'Entrer votre nom',
-                  icon: Icon(Icons.person, color: Colors.deepPurple, size: 50,)
-              ),
-                keyboardType: TextInputType.text,
-                autocorrect: true,
-                autofocus: true,
-                onChanged: affichage,
-                onSubmitted: submit,
-              ),
-              TextFormField(decoration: InputDecoration(
-                  labelText: 'Prenom',
-                  hintText: 'Entrer votre prenom',
-                  icon: Icon(
-                    Icons.perm_identity, color: Colors.deepPurple, size: 50,)
-              ),
-                keyboardType: TextInputType.text,
-              ),
-
-              TextField(decoration: InputDecoration(
-                  labelText: 'Phone',
-                  hintText: 'Entrer votre numero de Téléphone',
-                  icon: Icon(Icons.phone, color: Colors.deepPurple, size: 50,)
-              ),
-                keyboardType: TextInputType.number,
-              ),
-
-              TextField(decoration: InputDecoration(
-                  labelText: 'Mot de passe',
-                  hintText: 'Entrer votre Mot de passe',
-                  icon: Icon(Icons.lock, color: Colors.red, size: 50,)
-              ),
-                keyboardType: TextInputType.text,
-                obscureText: true,
-              ),
-
-
+              
             ],
           ),
         ));
