@@ -23,113 +23,103 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
+  List<BottomNavigationBarItem> _item;
+  int _id = 0;
   String value = '';
 
-  void show(String a) {
-    setState(() {
-      value = a;
-    });
-  }
-
-  void shows(String a) => setState(() => value = a);
-
-  void bouton_Sheet (){
-    showModalBottomSheet(context: context, builder: (BuildContext context){
-
-      return Container(
-        padding: EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-            Text(
-              'Soyez le bienvenue',
-              style: TextStyle(
-                color: Colors.blue,
-                fontSize: 18,
-
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-    );
+  void initState() {
+    _item = new List();
+    _item.add(BottomNavigationBarItem(
+        icon: Icon(Icons.person, color: Colors.purple),
+        title: Text('Prsonne')));
+    _item.add(BottomNavigationBarItem(
+        icon: Icon(Icons.wallpaper, color: Colors.purple),
+        title: Text('Vendredi')));
+    _item.add(BottomNavigationBarItem(
+        icon: Icon(Icons.add_shopping_cart, color: Colors.purple),
+        title: Text('Shopping')));
+    _item.add(BottomNavigationBarItem(
+        icon: Icon(Icons.airport_shuttle, color: Colors.purple),
+        title: Text('Un bus')));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.cyan,
-          title: Text('Tuto FooterButton & SheetBottun'),
-          centerTitle: true,
-          actions: <Widget>[
-            Icon(
-              Icons.thumb_up,
-              size: 35,
+      appBar: AppBar(
+        backgroundColor: Colors.cyan,
+        title: Text('Tuto FooterButton & SheetBottun'),
+        centerTitle: true,
+        actions: <Widget>[
+          Icon(
+            Icons.thumb_up,
+            size: 35,
+          ),
+        ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ButtonTheme(
+              minWidth: 200.0,
+              height: 75.0,
+              buttonColor: Colors.grey,
+              child: RaisedButton(
+                onPressed: null,
+                child: Text(
+                  'Cliquer ici',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+            Text(
+              'bienvenue',
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 18,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5),
+            ),
+            Text(
+              'bienvenue',
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 18,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5),
+            ),
+            Text(
+              '$value',
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 30,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5),
             ),
           ],
         ),
-        persistentFooterButtons: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.zoom_out_map,
-            ),
-            onPressed: () => show('Zoom map'),
-          ),
-          IconButton(
-            icon: Icon(Icons.account_balance_wallet),
-            onPressed: () => shows('info bank'),
-          ),
-          IconButton(
-            icon: Icon(Icons.add_comment),
-            onPressed: () => show('Credit info'),
-          ),
-        ],
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-            ButtonTheme(
-            minWidth: 200.0,
-            height: 75.0,
-            buttonColor: Colors.grey,
-            child: RaisedButton(onPressed: bouton_Sheet , child: Text('Cliquer ici', style: TextStyle(fontSize: 20, ), ),),
-          ),
-
-              Text(
-                'bienvenue',
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 18,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 5),
-              ),
-              Text(
-                'bienvenue',
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 18,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 5),
-              ),
-              Text(
-                '$value',
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 18,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 5),
-              ),
-            ],
-          ),
-        ));
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: _item,
+        currentIndex: _id,
+        onTap: (int item) {
+          setState(() {
+            _id = item;
+            int a = _id+1;
+            value = 'clic sur ${a.toString()}';
+          });
+        },
+      ),
+    );
+    //barre de navigation
   }
 }
