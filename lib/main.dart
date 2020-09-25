@@ -82,12 +82,17 @@ class _GestionFactureState extends State<GestionFacture> {
     )) {
       case reponse.OUI:
         _setvalue('OUI, je suis satisfait du service');
+        _seticon(Icon(Icons.thumb_up, color: Colors.green,size: 40,));
         break;
       case reponse.NON:
         _setvalue('NON, je ne suis pas satisfait du service');
+        _seticon(Icon(Icons.thumb_down, color: Colors.red,size: 40,));
+
         break;
       case reponse.SAIS_PAS:
         _setvalue('Je ne sais pas je suis partagé');
+        _seticon(Icon(Icons.thumbs_up_down, color: Colors.grey,size: 40,));
+
         break;
     }
   }
