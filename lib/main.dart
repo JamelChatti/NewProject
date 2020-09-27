@@ -51,7 +51,7 @@ class _GestionFactureState extends State<GestionFacture> {
           padding: EdgeInsets.all(10),
             margin: EdgeInsets.all(10),
             alignment: Alignment.center,
-            color: Colors.blueAccent,
+            color: Colors.blue[100],
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
