@@ -39,103 +39,75 @@ class _GestionFactureState extends State<GestionFacture> {
           ),
         ],
       ),
-      body: Center(
-          child: Card(
-        child: Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.all(10),
-            alignment: Alignment.center,
-            color: Colors.blue[100],
+      body:
+      Stack(
+        //alignment: Alignment.topRight,
+          children: <Widget>[
+      Flex(
+      direction: Axis.vertical,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(color: Colors.cyan,
+              ),
+            ),
+            Expanded(
+              flex: 3,
+                child: Container(color: Colors.black,
+                ))
+                ]
+      ),
+        Positioned(
+          top: 50,
+          left: 20,
+          right: 20,
+          child: Container(
+            height: 400,
+            width: 200,
+            color: Colors.amber,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+             // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                ListTile(
-                  leading: Icon(
-                    Icons.person,
-                    color: Colors.blue,
-                    size: 40,
-                  ),
-                  title: Text(
-                    'Bienvenue',
-                    textDirection: TextDirection.ltr,
-                    style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  subtitle: Text(
-                    'Tuoto français N 22 widget card ',
-                    textDirection: TextDirection.ltr,
-                    style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 20,
-                        color: Colors.black),
-                  ),
+                Container(
+                  margin: EdgeInsets.all(10),
+                  height: 100,
+                  width: 100,
+                  color: Colors.lightGreenAccent,
                 ),
-                Divider(height: 20,),
-                ListTile(
-                  leading: Icon(
-                    Icons.phone,
-                    color: Colors.blue,
-                    size: 40,
-                  ),
-                  title: Text(
-                    'Telephone',
-                    textDirection: TextDirection.ltr,
-                    style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  subtitle: Text(
-                    'telephone ',
-                    textDirection: TextDirection.ltr,
-                    style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 20,
-                        color: Colors.black),
-                  ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.blue,
                 ),
-                Divider(height: 20,),
-                ListTile(
-                  leading: Icon(
-                    Icons.phone,
-                    color: Colors.blue,
-                    size: 40,
-                  ),
-                  title: Text(
-                    'Email',
-                    textDirection: TextDirection.ltr,
-                    style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  subtitle: Text(
-                    'email ',
-                    textDirection: TextDirection.ltr,
-                    style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 20,
-                        color: Colors.black),
-                  ),
+
+                Row(
+
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+
+                    Container(
+                      margin:EdgeInsets.all(5),
+                      height: 100,
+                      width: 100,
+                      color: Colors.red,
+                    ),
+                    Container(
+                      margin:EdgeInsets.all(5),
+                      height: 100,
+                      width: 100,
+                      color: Colors.purple,
+                    )
+                  ],
                 )
 
               ],
-            )),
-      )),
+            ),
+          ),
+        )
+
+          ]
+      ),
     );
     //barre de navigation
   }
 }
-// child:
-// Stack(
-// children: <Widget>[
-// Container(
-// color: Colors.deepOrange,
-// )
-// ],
-// )
