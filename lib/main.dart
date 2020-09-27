@@ -24,12 +24,6 @@ class GestionFacture extends StatefulWidget {
   _GestionFactureState createState() => _GestionFactureState();
 }
 
-enum reponse {
-  OUI,
-  NON,
-  SAIS_PAS,
-}
-
 class _GestionFactureState extends State<GestionFacture> {
   @override
   Widget build(BuildContext context) {
@@ -46,130 +40,102 @@ class _GestionFactureState extends State<GestionFacture> {
         ],
       ),
       body: Center(
-
+          child: Card(
         child: Container(
-          padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             margin: EdgeInsets.all(10),
             alignment: Alignment.center,
             color: Colors.blue[100],
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        'Tunisair',
-                        textDirection: TextDirection.ltr,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black),
-                      ),
-                    ),
-                    // Text(
-                    //   'Tunisair',
-                    //   textDirection: TextDirection.ltr,
-                    //   style: TextStyle(
-                    //       decoration: TextDecoration.none,
-                    //       fontSize: 30,
-                    //       fontWeight: FontWeight.w700,
-                    //       color: Colors.red),
-                    // ),
-                    Expanded(
-                      child: Text(
-                        'From Tunis to Istambul',
-                        textDirection: TextDirection.ltr,
-                        style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.red,
-                        ),
-                      ),
-                    )
-                  ],
+                ListTile(
+                  leading: Icon(
+                    Icons.person,
+                    color: Colors.blue,
+                    size: 40,
+                  ),
+                  title: Text(
+                    'Bienvenue',
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                  subtitle: Text(
+                    'Tuoto français N 22 widget card ',
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 20,
+                        color: Colors.black),
+                  ),
                 ),
-
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        'Turkish airline',
-                        textDirection: TextDirection.ltr,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black),
-                      ),
-                    ),
-                    // Text(
-                    //   'Tunisair',
-                    //   textDirection: TextDirection.ltr,
-                    //   style: TextStyle(
-                    //       decoration: TextDecoration.none,
-                    //       fontSize: 30,
-                    //       fontWeight: FontWeight.w700,
-                    //       color: Colors.red),
-                    // ),
-                    Expanded(
-                      child: Text(
-                        'From Istambul to Tunis  ',
-                        textDirection: TextDirection.ltr,
-                        style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.red,
-                        ),
-                      ),
-                    )
-                  ],
+                Divider(height: 20,),
+                ListTile(
+                  leading: Icon(
+                    Icons.phone,
+                    color: Colors.blue,
+                    size: 40,
+                  ),
+                  title: Text(
+                    'Telephone',
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                  subtitle: Text(
+                    'telephone ',
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 20,
+                        color: Colors.black),
+                  ),
                 ),
-
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        'Nouvelair',
-                        textDirection: TextDirection.ltr,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black),
-                      ),
-                    ),
-                    // Text(
-                    //   'Tunisair',
-                    //   textDirection: TextDirection.ltr,
-                    //   style: TextStyle(
-                    //       decoration: TextDecoration.none,
-                    //       fontSize: 30,
-                    //       fontWeight: FontWeight.w700,
-                    //       color: Colors.red),
-                    // ),
-                    Expanded(
-                      child: Text(
-                        'From Tunis to Paris',
-                        textDirection: TextDirection.ltr,
-                        style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.red,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                Divider(height: 20,),
+                ListTile(
+                  leading: Icon(
+                    Icons.phone,
+                    color: Colors.blue,
+                    size: 40,
+                  ),
+                  title: Text(
+                    'Email',
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                  subtitle: Text(
+                    'email ',
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 20,
+                        color: Colors.black),
+                  ),
+                )
 
               ],
             )),
-      ),
+      )),
     );
     //barre de navigation
   }
 }
+// child:
+// Stack(
+// children: <Widget>[
+// Container(
+// color: Colors.deepOrange,
+// )
+// ],
+// )
