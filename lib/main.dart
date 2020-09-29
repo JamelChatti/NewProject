@@ -61,6 +61,7 @@ class _GestionFactureState extends State<GestionFacture> {
           body: TabBarView(
             children: [
               Card(
+                color: Colors.limeAccent,
                 child: Image.asset(
                   'images/th5.png',
                   height: 200,
@@ -68,6 +69,7 @@ class _GestionFactureState extends State<GestionFacture> {
                 ),
               ),
               Card(
+                color: Colors.green,
                 child: Image.asset(
                   'images/th6.png',
                   height: 200,
@@ -75,15 +77,17 @@ class _GestionFactureState extends State<GestionFacture> {
                 ),
               ),
               Card(
+                color: Colors.deepOrangeAccent,
                 child: Image.asset(
                   'images/th7.png',
-                  height: 800,
-                  width: 400,
+                  height: 200,
+                  width: 200,
                 ),
               ),
               Card(
+                color: Colors.deepPurpleAccent,
                 child: Image.asset(
-                  'images/th5.png',
+                  'images/th8.png',
                  // height: 100,
                   //width: 100,
                 ),
