@@ -1,7 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/material/data_table.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -25,79 +26,91 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
+  List<Geo> geos;
+  void initState()
+  {
+    geos=Geo.getgeo();
+    super.initState();
+  }
+
+  Widget tablesgeo() {
+    return DataTable(
+      columns: [
+        DataColumn(label: Text('Pays', style: TextStyle(
+            fontSize: 15, color: Colors.blue, fontWeight: FontWeight.bold),)),
+        DataColumn(label: Text('Capital', style: TextStyle(
+            fontSize: 15, color: Colors.blue, fontWeight: FontWeight.bold),)),
+        DataColumn(label: Text('continent', style: TextStyle(
+            fontSize: 15, color: Colors.blue, fontWeight: FontWeight.bold),)),
+      ],
+       rows:
+      geos.map((geo)=>DataRow(
+        cells:[
+          DataCell(Text(geo.pays)),
+          DataCell(Text(geo.capital)),
+          DataCell(Text(geo.continent)),
+        ]
+      )).toList()
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 4,
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.blue,
-            title: Text('Tuto ListViewBuilder'),
-            centerTitle: true,
-            actions: <Widget>[
-              Icon(
-                Icons.thumb_up,
-                size: 35,
-              ),
-            ],
-            bottom: TabBar(
-              tabs: <Widget>[
-                Tab(
-                  child: Icon(Icons.alarm),
-                ),
-                Tab(
-                  child: Icon(Icons.present_to_all),
-                ),
-                Tab(
-                  child: Icon(Icons.directions_walk),
-                ),
-                Tab(
-                  child: Icon(Icons.airline_seat_individual_suite),
-                )
-              ],
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: Text('Tuto DataTable'),
+          centerTitle: true,
+          actions: <Widget>[
+            Icon(
+              Icons.desktop_mac,
+              size: 35,
             ),
-          ),
-          body: TabBarView(
-            children: [
-              Card(
-                color: Colors.limeAccent,
-                child: Image.asset(
-                  'images/th5.png',
-                  height: 200,
-                  width: 200,
-                ),
-              ),
-              Card(
-                color: Colors.green,
-                child: Image.asset(
-                  'images/th6.png',
-                  height: 200,
-                  width: 200,
-                ),
-              ),
-              Card(
-                color: Colors.deepOrangeAccent,
-                child: Image.asset(
-                  'images/th7.png',
-                  height: 200,
-                  width: 200,
-                ),
-              ),
-              Card(
-                color: Colors.deepPurpleAccent,
-                child: Image.asset(
-                  'images/th8.png',
-                 // height: 100,
-                  //width: 100,
-                ),
-              ),
+          ],
+        ),
+        body: Center(
+          child: ListView(
+            children: <Widget>[
+              tablesgeo(),
             ],
           ),
-        ),
-      ),
-    );
 
-    //barre de navigation
+        )//barre de navigation
+    );
+  }
+}
+
+class Geo{
+  String pays;
+  String capital;
+  String continent;
+  Geo({this.pays, this.capital, this.continent});
+  static List<Geo> getgeo(){
+    return<Geo>[
+      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
+      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
+      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
+      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
+      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
+      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
+      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
+      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
+      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
+      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
+      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
+      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
+      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
+      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
+      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
+      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
+      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
+      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
+      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
+      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
+      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
+      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
+      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
+      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
+     ];
   }
 }
