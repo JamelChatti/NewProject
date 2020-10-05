@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/data_table.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -26,32 +25,30 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-  List<Geo> geos;
-  void initState()
-  {
-    geos=Geo.getgeo();
-    super.initState();
+  String value = ' ';
+  String name = ' ';
+  String phone = ' ';
+  String mdp = ' ';
+  final formkey=new GlobalKey<FormState>();
+
+  validationform(){
+   if (formkey.currentState.validate()){
+     formkey.currentState.save();
+     debugPrint('$name');
+     debugPrint('$phone');
+     debugPrint('$mdp');
+     formkey.currentState.reset();
+   }
+   else{
+     debugPrint('error....'); 
+   }
   }
 
-  Widget tablesgeo() {
-    return DataTable(
-      columns: [
-        DataColumn(label: Text('Pays', style: TextStyle(
-            fontSize: 15, color: Colors.blue, fontWeight: FontWeight.bold),)),
-        DataColumn(label: Text('Capital', style: TextStyle(
-            fontSize: 15, color: Colors.blue, fontWeight: FontWeight.bold),)),
-        DataColumn(label: Text('continent', style: TextStyle(
-            fontSize: 15, color: Colors.blue, fontWeight: FontWeight.bold),)),
-      ],
-       rows:
-      geos.map((geo)=>DataRow(
-        cells:[
-          DataCell(Text(geo.pays)),
-          DataCell(Text(geo.capital)),
-          DataCell(Text(geo.continent)),
-        ]
-      )).toList()
-    );
+
+  void affichage(String b) {
+    setState(() {
+      value = 'Bienvenue $b';
+    });
   }
 
   @override
@@ -68,49 +65,66 @@ class _GestionFactureState extends State<GestionFacture> {
             ),
           ],
         ),
-        body: Center(
-          child: ListView(
-            children: <Widget>[
-              tablesgeo(),
-            ],
+        body: Form(
+          key: formkey,
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  value,
+                  style: TextStyle(fontSize: 20, color: Colors.blue),
+                  textAlign: TextAlign.center,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'Nom',
+                      hintText: 'Entrer votre nom',
+                      icon: Icon(
+                        Icons.person,
+                        color: Colors.deepPurple,
+                        size: 50,
+                      )),
+                  validator:(val)=>val.length==0 ? 'Valider votre nom' : null ,
+                  onSaved:(val)=> name=val ,
+                  keyboardType: TextInputType.text,
+                  autocorrect: true,
+                  autofocus: true,
+                  onChanged: affichage,
+                  //onSubmitted: submit,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'Phone',
+                      hintText: 'Entrer votre numero de Téléphone',
+                      icon: Icon(
+                        Icons.phone,
+                        color: Colors.deepPurple,
+                        size: 50,
+                      )),
+                  validator:(val)=>val.length==0 ? 'Valider votre numero de telephone' : null ,
+                  onSaved:(val)=> phone=val ,
+                  keyboardType: TextInputType.number,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'Mot de passe',
+                      hintText: 'Entrer votre Mot de passe',
+                      icon: Icon(
+                        Icons.lock,
+                        color: Colors.red,
+                        size: 50,
+                      )),
+                  validator:(val)=>val.length==0 ? 'Valider le mot de passe' : null ,
+                  onSaved:(val)=> mdp=val ,
+                ),
+                RaisedButton(
+                  child:Text('Validation', style: TextStyle(color: Colors.blue, fontSize: 20, fontWeight: FontWeight.bold),) ,
+                  onPressed: validationform,
+                )
+              ],
+            ),
           ),
-
-        )//barre de navigation
-    );
-  }
-}
-
-class Geo{
-  String pays;
-  String capital;
-  String continent;
-  Geo({this.pays, this.capital, this.continent});
-  static List<Geo> getgeo(){
-    return<Geo>[
-      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
-      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
-      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
-      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
-      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
-      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
-      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
-      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
-      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
-      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
-      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
-      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
-      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
-      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
-      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
-      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
-      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
-      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
-      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
-      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
-      Geo(pays: 'Tunisie', capital: 'Tunis', continent: 'Afrique'),
-      Geo(pays: 'Algerie', capital: 'Alger', continent: 'Afrique'),
-      Geo(pays: 'Turkie', capital: 'Ankara', continent: 'Asie'),
-      Geo(pays: 'Allemagne', capital: 'Berlin', continent: 'Europe'),
-     ];
+        ) //barre de navigation
+        );
   }
 }
