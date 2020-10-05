@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/material/data_table.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,6 +25,24 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
+
+  Widget imagecarousel = Container(
+    height: 250,
+    child: Carousel(
+    boxFit: BoxFit.fill,
+    images: [
+      AssetImage('images/th9.png'),
+      AssetImage('images/th10.png'),
+      AssetImage('images/th11.png'),
+      AssetImage('images/th12.png'),
+      AssetImage('images/th13.png'),
+      AssetImage('images/th14.png'),
+      AssetImage('images/im15.png'),
+      AssetImage('images/im16.png'),
+    ],
+    ),
+  );
+
   String value = ' ';
   String name = ' ';
   String phone = ' ';
@@ -54,18 +72,21 @@ class _GestionFactureState extends State<GestionFacture> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text('Tuto DataTable'),
-          centerTitle: true,
-          actions: <Widget>[
-            Icon(
-              Icons.desktop_mac,
-              size: 35,
-            ),
-          ],
-        ),
-        body: Form(
+        // appBar: AppBar(
+        //   backgroundColor: Colors.blue,
+        //   title: Text('Tuto DataTable'),
+        //   centerTitle: true,
+        //   actions: <Widget>[
+        //     Icon(
+        //       Icons.desktop_mac,
+        //       size: 35,
+        //     ),
+        //   ],
+        // ),
+        body: ListView(
+          children:<Widget> [
+imagecarousel,
+          Form(
           key: formkey,
           child: Center(
             child: Column(
@@ -124,7 +145,10 @@ class _GestionFactureState extends State<GestionFacture> {
               ],
             ),
           ),
-        ) //barre de navigation
-        );
+        )
+      ]//barre de navigation
+        ),
+    );
+
   }
 }
