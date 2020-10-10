@@ -1,7 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/widgets.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,12 +25,76 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
+  List<String> listimage = List();
+  CarouselSlider instance;
+
+  String a =
+      'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography27.jpg';
+  String b =
+      'https://www.gettyimages.fr/detail/photo/ghorfas-image-libre-de-droits/111918955';
+  String c =
+      'https://www.gettyimages.fr/detail/photo/dromedary-in-the-sahara-desert-of-ksar-ghilane-image-libre-de-droits/509420688';
+  String d =
+      'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography30.jpg';
+  String e =
+      'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography.jpg';
+  String f =
+      'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography2.jpg';
+  String g =
+      'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography3.jpg';
+  String h =
+      'https://www.gettyimages.fr/detail/photo/roman-amphitheatre-of-el-jem-image-libre-de-droits/108402763';
+  String i =
+      'https://www.gettyimages.fr/detail/photo/desert-with-moon-and-lake-image-libre-de-droits/900626736';
+  String j =
+      'https://www.gettyimages.fr/detail/photo/swimming-pool-in-sea-against-clear-sky-image-libre-de-droits/1163882724';
+  String k =
+      'https://www.gettyimages.fr/detail/photo/tunisia-landscape-image-libre-de-droits/143668207';
+
+  void initState() {
+    super.initState();
+    listimage.add(a);
+    listimage.add(b);
+    listimage.add(c);
+    listimage.add(d);
+    listimage.add(e);
+    listimage.add(f);
+    listimage.add(g);
+    listimage.add(h);
+    listimage.add(i);
+    listimage.add(j);
+    listimage.add(k);
+  }
+
   @override
   Widget build(BuildContext context) {
+    instance = CarouselSlider(
+        initialPage: 0,
+        enableInfiniteScroll: true,
+        scrollDirection: Axis.vertical,
+        height: MediaQuery.of(context).size.height,
+        items: listimage.map((x) {
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.symmetric(horizontal: 5.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.black,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Expanded(
+                  child: Image.network('$x'),
+                )
+              ],
+            ),
+          );
+        }).toList());
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          title: Text('Tuto BackdropFilter '),
+          title: Text('Tuto Slider Carousel Flutter'),
           centerTitle: true,
           actions: <Widget>[
             Icon(
@@ -39,55 +103,11 @@ class _GestionFactureState extends State<GestionFacture> {
             ),
           ],
         ),
-        body: Stack(
-          fit: StackFit.expand,
+        body: Column(
           children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(
-                        'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography27.jpg'),
-                  )),
-            ),
-            Positioned(
-                top: 100,
-                left: 50,
-                right: 50,
-                bottom: 400,
-                child: BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 0,
-                      sigmaY: 2,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        color: Colors.greenAccent.withOpacity(0.5),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              'Belle image',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: 50,),
-                            Text(
-                              'Belle image',
-                              style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )))
+            Expanded(
+              child: instance,
+            )
           ],
         ));
   }
