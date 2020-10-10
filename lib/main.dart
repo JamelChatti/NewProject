@@ -1,7 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/widgets.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,76 +25,39 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-  List<String> listimage = List();
-  CarouselSlider instance;
-
-  String a =
-      'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography27.jpg';
-  String b =
-      'https://www.gettyimages.fr/detail/photo/ghorfas-image-libre-de-droits/111918955';
-  String c =
-      'https://www.gettyimages.fr/detail/photo/dromedary-in-the-sahara-desert-of-ksar-ghilane-image-libre-de-droits/509420688';
-  String d =
-      'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography30.jpg';
-  String e =
-      'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography.jpg';
-  String f =
-      'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography2.jpg';
-  String g =
-      'http://www.somuchviral.com/wp-content/uploads/2014/09/nature-photography3.jpg';
-  String h =
-      'https://www.gettyimages.fr/detail/photo/roman-amphitheatre-of-el-jem-image-libre-de-droits/108402763';
-  String i =
-      'https://www.gettyimages.fr/detail/photo/desert-with-moon-and-lake-image-libre-de-droits/900626736';
-  String j =
-      'https://www.gettyimages.fr/detail/photo/swimming-pool-in-sea-against-clear-sky-image-libre-de-droits/1163882724';
-  String k =
-      'https://www.gettyimages.fr/detail/photo/tunisia-landscape-image-libre-de-droits/143668207';
-
-  void initState() {
-    super.initState();
-    listimage.add(a);
-    listimage.add(b);
-    listimage.add(c);
-    listimage.add(d);
-    listimage.add(e);
-    listimage.add(f);
-    listimage.add(g);
-    listimage.add(h);
-    listimage.add(i);
-    listimage.add(j);
-    listimage.add(k);
+  Widget movies(String name, String image, String movie) {
+    return Padding(
+      padding: EdgeInsets.all(5.0),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.indigo,
+          foregroundColor: Colors.white,
+          backgroundImage: NetworkImage(image),
+          radius: 30,
+          child: Text(
+            image.length == 0 ? name[0].toUpperCase() : '',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
+        ),
+        title: Text(
+          name,
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(
+          movie,
+          style: TextStyle(
+              fontSize: 15, fontWeight: FontWeight.bold, color: Colors.purple),
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    instance = CarouselSlider(
-        initialPage: 0,
-        enableInfiniteScroll: true,
-        scrollDirection: Axis.vertical,
-        height: MediaQuery.of(context).size.height,
-        items: listimage.map((x) {
-          return Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.symmetric(horizontal: 5.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.black,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Expanded(
-                  child: Image.network('$x'),
-                )
-              ],
-            ),
-          );
-        }).toList());
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          title: Text('Tuto Slider Carousel Flutter'),
+          title: Text('Tuto CircleAvatar '),
           centerTitle: true,
           actions: <Widget>[
             Icon(
@@ -103,11 +66,73 @@ class _GestionFactureState extends State<GestionFacture> {
             ),
           ],
         ),
-        body: Column(
+        body: ListView(
           children: <Widget>[
-            Expanded(
-              child: instance,
-            )
+            movies(
+                'Chatti Jamel',
+                'https://tse4.mm.bing.net/th?id=OIP.K6oPQ7NF0lf0bx1LLhGkpgHaFz&pid=Api&P=0&w=218&h=172',
+                'Pharmacien'),
+            Divider(height: 10,),
+            movies(
+                'Imen Chatti Sabbagh',
+                'https://tse3.mm.bing.net/th?id=OIP.9MYaDxeEDvakBSZ2jT1m6gHaE8&pid=Api&P=0&w=236&h=158',
+                'Institutrice'),
+            Divider(height: 10,),
+            movies(
+                'Ghassen Chatti',
+                'https://tse4.mm.bing.net/th?id=OIP.K6oPQ7NF0lf0bx1LLhGkpgHaFz&pid=Api&P=0&w=218&h=172',
+                'Pharmacien'),
+            Divider(height: 10,),
+            movies(
+                'Ahmed Chatti',
+                '',
+                'Medecin'),
+            Divider(height: 10,),
+            movies(
+                'Nada Chatti ',
+                '',
+                'Ingenieur'),
+            Divider(height: 10,),
+            movies(
+                'Jihen Chatti',
+                '',
+                'Pharmacien'),
+            Divider(height: 10,),
+            Divider(height: 10,),
+            movies(
+                'Ahmed Chatti',
+                '',
+                'Medecin'),
+            Divider(height: 10,), movies(
+                'Chatti Jamel',
+                'https://tse4.mm.bing.net/th?id=OIP.K6oPQ7NF0lf0bx1LLhGkpgHaFz&pid=Api&P=0&w=218&h=172',
+                'Pharmacien'),
+            Divider(height: 10,),
+            movies(
+                'Ahmed Chatti',
+                '',
+                'Medecin'),
+            Divider(height: 10,),
+            movies(
+                'Chatti Jamel',
+                'https://tse4.mm.bing.net/th?id=OIP.K6oPQ7NF0lf0bx1LLhGkpgHaFz&pid=Api&P=0&w=218&h=172',
+                'Pharmacien'),
+            Divider(height: 10,),
+            movies(
+                'Ahmed Chatti',
+                '',
+                'Medecin'),
+            Divider(height: 10,),
+            movies(
+                'Chatti Jamel',
+                'https://tse4.mm.bing.net/th?id=OIP.K6oPQ7NF0lf0bx1LLhGkpgHaFz&pid=Api&P=0&w=218&h=172',
+                'Pharmacien'),
+            Divider(height: 10,),
+            movies(
+                'Ahmed Chatti',
+                '',
+                'Medecin'),
+            Divider(height: 10,)
           ],
         ));
   }
