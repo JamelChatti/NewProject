@@ -1,7 +1,5 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,39 +23,14 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-  Widget movies(String name, String image, String movie) {
-    return Padding(
-      padding: EdgeInsets.all(5.0),
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.indigo,
-          foregroundColor: Colors.white,
-          backgroundImage: NetworkImage(image),
-          radius: 30,
-          child: Text(
-            image.length == 0 ? name[0].toUpperCase() : '',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-        ),
-        title: Text(
-          name,
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text(
-          movie,
-          style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.bold, color: Colors.purple),
-        ),
-      ),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          title: Text('Tuto CircleAvatar '),
+          title: Text('Tuto StaggeredGridview '),
           centerTitle: true,
           actions: <Widget>[
             Icon(
@@ -66,74 +39,107 @@ class _GestionFactureState extends State<GestionFacture> {
             ),
           ],
         ),
-        body: ListView(
-          children: <Widget>[
-            movies(
-                'Chatti Jamel',
-                'https://tse4.mm.bing.net/th?id=OIP.K6oPQ7NF0lf0bx1LLhGkpgHaFz&pid=Api&P=0&w=218&h=172',
-                'Pharmacien'),
-            Divider(height: 10,),
-            movies(
-                'Imen Chatti Sabbagh',
-                'https://tse3.mm.bing.net/th?id=OIP.9MYaDxeEDvakBSZ2jT1m6gHaE8&pid=Api&P=0&w=236&h=158',
-                'Institutrice'),
-            Divider(height: 10,),
-            movies(
-                'Ghassen Chatti',
-                'https://tse4.mm.bing.net/th?id=OIP.K6oPQ7NF0lf0bx1LLhGkpgHaFz&pid=Api&P=0&w=218&h=172',
-                'Pharmacien'),
-            Divider(height: 10,),
-            movies(
-                'Ahmed Chatti',
-                '',
-                'Medecin'),
-            Divider(height: 10,),
-            movies(
-                'Nada Chatti ',
-                '',
-                'Ingenieur'),
-            Divider(height: 10,),
-            movies(
-                'Jihen Chatti',
-                '',
-                'Pharmacien'),
-            Divider(height: 10,),
-            Divider(height: 10,),
-            movies(
-                'Ahmed Chatti',
-                '',
-                'Medecin'),
-            Divider(height: 10,), movies(
-                'Chatti Jamel',
-                'https://tse4.mm.bing.net/th?id=OIP.K6oPQ7NF0lf0bx1LLhGkpgHaFz&pid=Api&P=0&w=218&h=172',
-                'Pharmacien'),
-            Divider(height: 10,),
-            movies(
-                'Ahmed Chatti',
-                '',
-                'Medecin'),
-            Divider(height: 10,),
-            movies(
-                'Chatti Jamel',
-                'https://tse4.mm.bing.net/th?id=OIP.K6oPQ7NF0lf0bx1LLhGkpgHaFz&pid=Api&P=0&w=218&h=172',
-                'Pharmacien'),
-            Divider(height: 10,),
-            movies(
-                'Ahmed Chatti',
-                '',
-                'Medecin'),
-            Divider(height: 10,),
-            movies(
-                'Chatti Jamel',
-                'https://tse4.mm.bing.net/th?id=OIP.K6oPQ7NF0lf0bx1LLhGkpgHaFz&pid=Api&P=0&w=218&h=172',
-                'Pharmacien'),
-            Divider(height: 10,),
-            movies(
-                'Ahmed Chatti',
-                '',
-                'Medecin'),
-            Divider(height: 10,)
-          ],
-        ));
+        body: Container(
+          margin: EdgeInsets.all(10),
+          child: StaggeredGridView.countBuilder(
+              crossAxisCount: 4,
+              mainAxisSpacing: 5.0,
+              crossAxisSpacing: 5.0,
+              shrinkWrap: true,
+              primary: false,
+              itemCount: infos.length,
+              itemBuilder: (BuildContext context, int index){
+                return Showinfo(
+                  verif: infos[index]
+                );
+              },
+              staggeredTileBuilder: (int index){
+                return StaggeredTile.fit(2);
+              }),
+        )
+    );
+  }
+}
+
+class Info {
+  String image;
+  String titles;
+  String city;
+
+  Info({this.image, this.titles, this.city});
+}
+
+List<Info> infos = [
+  Info(
+    image: 'https://tse2.mm.bing.net/th?id=OIP.EEFXJj_Zwm_NqzJeHIJE4QHaFU&pid=Api&P=0&w=213&h=154',
+    titles: 'Maison culture',
+    city: 'Msaken',
+  ),
+  Info(
+    image: 'https://tse1.mm.bing.net/th?id=OIP.cq8NMM3Yrqy_0SFD78B13AHaF7&pid=Api&P=0&w=190&h=153',
+    titles: 'Rond point mongala',
+    city: 'Msaken',
+  ),
+  Info(
+    image: 'https://tse3.mm.bing.net/th?id=OIP.6FD8jHV0MmHawVYXoBn5BQHaFq&pid=Api&P=0&w=199&h=154',
+    titles: 'Grande mosqué',
+    city: 'Msaken',
+  ),
+  Info(
+    image: 'https://tse3.mm.bing.net/th?id=OIP._8xBHE02zEkyMqPBosNfWwHaE_&pid=Api&P=0&w=226&h=153',
+    titles: 'Municipalité',
+    city: 'Msaken',
+  ),
+  Info(
+    image: 'https://tse4.mm.bing.net/th?id=OIP.3AVkjph3fSn8RMlMqUjY7QHaFj&pid=Api&P=0&w=216&h=163',
+    titles: 'Rue',
+    city: 'Sidibousaid',
+  ),
+  Info(
+    image: 'https://tse1.mm.bing.net/th?id=OIP.ShL2RLjLg8PZmrvnxYvtOgAAAA&pid=Api&P=0&w=235&h=177',
+    titles: 'vue de mer',
+    city: 'Sidibousaid',
+  ),
+  Info(
+    image: 'https://tse1.mm.bing.net/th?id=OIP.GJuV7AB_KybFpSnDxAes7AHaDF&pid=Api&P=0&w=393&h=165',
+    titles: 'oust dar ',
+    city: 'Tunis',
+  ),
+  Info(
+    image: 'https://tse1.mm.bing.net/th?id=OIP.jjytyoIm1g3SbyLXQJRGoAHaIV&pid=Api&P=0&w=300&h=300',
+    titles: 'Vue de l\'interieur maison ancienne',
+    city: 'Tunisie',
+  ),
+  Info(
+    image: 'https://tse3.mm.bing.net/th?id=OIP.ltPRx3cOS-spMeIccipO5QHaLF&pid=Api&P=0&w=300&h=300',
+    titles: 'Vue de l\'interieur maison ancienne',
+    city: 'Tunisie',
+  ),
+  Info(
+    image: 'https://tse1.mm.bing.net/th?id=OIP.RHRccPCKqZfchoac7fh5pQAAAA&pid=Api&P=0&w=300&h=300',
+    titles: 'Vue de l\'interieur maison ancienne',
+    city: 'Tunisie',
+  ),
+];
+
+class Showinfo extends StatelessWidget {
+  final Info verif;
+
+  const Showinfo({Key key, this.verif}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.network(verif.image),
+
+        ),
+        Text(verif.titles, style: TextStyle(fontWeight: FontWeight.bold),),
+        Text(verif.city, style: TextStyle(fontWeight: FontWeight.bold),),
+        SizedBox(height: 30)
+      ],
+    );
   }
 }
