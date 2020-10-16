@@ -23,159 +23,100 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
+  int initialstep = 0;
+  List<Step> steps = [
+    Step(
+      title: Text(
+        'Confirmer nom et prénom',
+        style: TextStyle(color: Colors.blue),
+      ),
+      content: Text('Chatti '),
+      isActive: true,
+      subtitle: Text('Etape1'),
+    ),
+    Step(
+      title: Text(
+        'Confirmer votre adresse',
+        style: TextStyle(color: Colors.purple),
+      ),
+      content: Text('Rue Hedi Chaker '),
+      isActive: true,
+      subtitle: Text('Etape2'),
+    ),
+    Step(
+      title: Text(
+        'Confirmer votre numero de téléphone',
+        style: TextStyle(color: Colors.green),
+      ),
+      content: Text('+216470158'),
+      isActive: true,
+      subtitle: Text('Etape3'),
+    ),
+    Step(
+      title: Text(
+        'Indiquer votre sexe',
+        style: TextStyle(color: Colors.red),
+      ),
+      content: Text('Masculin'),
+      isActive: true,
+      subtitle: Text('Etape4'),
+    ),
+    Step(
+      title: Text(
+        'MERCI!',
+        style: TextStyle(color: Colors.red),
+      ),
+      content: Image.network('https://tse2.mm.bing.net/th?id=OIP.69i8qHQdyRtS0X_4MpmgrQAAAA&pid=Api&P=0&w=300&h=300'),
+      isActive: true,
+      state: StepState.complete,
+      subtitle: Text('FIN'),
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: DefaultTabController(
-            length: 2,
-            child: Scaffold(
-                appBar: AppBar(
-                  backgroundColor: Colors.blue,
-                  title: Text('Tuto SingleChildScrollView '),
-                  centerTitle: true,
-                  actions: <Widget>[
-                    Icon(
-                      Icons.local_florist,
-                      size: 35,
-                    ),
-                  ],
-                  bottom: TabBar(tabs: <Widget>[
-                    Tab(
-                      child: Icon(
-                        Icons.home,
-                        color: Color(0xff622F74),
-                        size: 40,
-                      ),
-                    ),
-                    Tab(
-                      child: Icon(
-                        Icons.pets,
-                        color: Color(0xff622F74),
-                        size: 40,
-                      ),
-                    ),
-                  ]),
-                ),
-                body: TabBarView(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        children: <Widget>[
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Container(
-                              margin: EdgeInsets.only(top: 20),
-                              child: Row(
-                                children: <Widget>[
-                                  ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: Image.network(
-                                        'https://tse3.mm.bing.net/th?id=OIP.5vtUZIF068A7Ox4nwwlB4wHaLH&pid=Api&P=0&w=300&h=300',
-                                        height: 300,
-                                        width: 300,
-                                      )),
-                                  SizedBox(
-                                    width: 50,
-                                  ),
-                                  ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: Image.network(
-                                        'https://tse1.explicit.bing.net/th?id=OIP.DxhjYW77E3v2k71GRPAa6AHaEK&pid=Api&P=0&w=286&h=161',
-                                        height: 300,
-                                        width: 300,
-                                      )),
-                                  SizedBox(
-                                    width: 50,
-                                  ),
-                                  ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: Image.network(
-                                        'https://tse4.mm.bing.net/th?id=OIP.8m7D9rvUrmLrmSqj-l7VSgHaFj&pid=Api&P=0&w=214&h=161',
-                                        height: 300,
-                                        width: 300,
-                                      )),
-                                  SizedBox(
-                                    width: 50,
-                                  ),
-                                  ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: Image.network(
-                                        'https://tse3.mm.bing.net/th?id=OIP.yAbvtnVcerpb6LfpxWdytQHaHb&pid=Api&P=0&w=300&h=300',
-                                        height: 300,
-                                        width: 300,
-                                      )),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Container(
-                        child: Column(
-                          children: <Widget>[
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.network(
-                                'https://tse4.mm.bing.net/th?id=OIP.G-hDSfttOTRj2_2Z5pSMYQHaEK&pid=Api&P=0&w=286&h=161',
-                                height: 400,
-                                width: 300,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 0,
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.network(
-                                'https://tse1.mm.bing.net/th?id=OIP.l0aTUHXKLov2Ionv65hYcwHaFs&pid=Api&P=0&w=219&h=170',
-                                height: 400,
-                                width: 300,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.network(
-                                'https://tse1.mm.bing.net/th?id=OIP.8M1SoX2xdufbRSqeXbwMxgHaEK&pid=Api&P=0&w=314&h=177',
-                                height: 400,
-                                width: 300,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.network(
-                                'https://tse3.mm.bing.net/th?id=OIP.FeBKmr3l9kSZI97UphVMBQHaFj&pid=Api&P=0&w=225&h=169',
-                                height: 400,
-                                width: 300,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.network(
-                                'https://tse1.mm.bing.net/th?id=OIP.rbgoISCUJX6l5bX6ppJ6-gHaEo&pid=Api&P=0&w=293&h=184',
-                                height: 400,
-                                width: 300,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ))));
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: Text('Tuto Stepper '),
+          centerTitle: true,
+          actions: <Widget>[
+            Icon(
+              Icons.local_florist,
+              size: 35,
+            ),
+          ],
+        ),
+        body: Stepper(
+          currentStep: this.initialstep,
+          steps: steps,
+          type: StepperType.vertical,
+          onStepTapped: (Step){
+            setState(() {
+              initialstep=Step;
+            });
+          },
+          onStepContinue: () {
+            setState(() {
+              if(initialstep<steps.length-1){
+                initialstep=initialstep+1;
+    }
+              else{
+                initialstep=0;
+              }
+            });
+          },
+          onStepCancel: () {
+            setState(() {
+              if(initialstep>0){
+                initialstep=initialstep-1;
+              }
+              else{
+                initialstep=0;
+              }
+            });
+
+          },
+    ));
   }
 }
