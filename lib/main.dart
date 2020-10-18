@@ -1,3 +1,5 @@
+import 'dart:ui';
+import'package:flutter/src/material/dropdown.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter demo',
+      title: 'Flutter DropDownlist',
       //   primarySwatch: Colors.blue,
       // theme: ThemeData(
       // ),
@@ -23,62 +25,139 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-  int initialstep = 0;
-  List<Step> steps = [
-    Step(
-      title: Text(
-        'Confirmer nom et prénom',
-        style: TextStyle(color: Colors.blue),
-      ),
-      content: Text('Chatti '),
-      isActive: true,
-      subtitle: Text('Etape1'),
-    ),
-    Step(
-      title: Text(
-        'Confirmer votre adresse',
-        style: TextStyle(color: Colors.purple),
-      ),
-      content: Text('Rue Hedi Chaker '),
-      isActive: true,
-      subtitle: Text('Etape2'),
-    ),
-    Step(
-      title: Text(
-        'Confirmer votre numero de téléphone',
-        style: TextStyle(color: Colors.green),
-      ),
-      content: Text('+216470158'),
-      isActive: true,
-      subtitle: Text('Etape3'),
-    ),
-    Step(
-      title: Text(
-        'Indiquer votre sexe',
-        style: TextStyle(color: Colors.red),
-      ),
-      content: Text('Masculin'),
-      isActive: true,
-      subtitle: Text('Etape4'),
-    ),
-    Step(
-      title: Text(
-        'MERCI!',
-        style: TextStyle(color: Colors.red),
-      ),
-      content: Image.network('https://tse2.mm.bing.net/th?id=OIP.69i8qHQdyRtS0X_4MpmgrQAAAA&pid=Api&P=0&w=300&h=300'),
-      isActive: true,
-      state: StepState.complete,
-      subtitle: Text('FIN'),
-    )
-  ];
+  List<DropdownMenuItem<String>> listmonths = [];
+  String def = null;
+void months(){
+  listmonths.clear();
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Janvier',
+        child:
+      Text(
+        'Janvier',
+        style: TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 25),
+      ),)
+      );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Fevrier',
+        child:
+        Text(
+          'Fevrier',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Mars',
+        child:
+        Text(
+          'Mars',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Avril',
+        child:
+        Text(
+          'Avril',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Mai',
+        child:
+        Text(
+          'Mai',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Juin',
+        child:
+        Text(
+          'Juin',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Juillet',
+        child:
+        Text(
+          'Juillet',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Aout',
+        child:
+        Text(
+          'Aout',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Septembre',
+        child:
+        Text(
+          'Septembre',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Octobre',
+        child:
+        Text(
+          'Octobre',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Novembre',
+        child:
+        Text(
+          'Novembre',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
+  listmonths.add(
+      DropdownMenuItem(
+        value : 'Decembre',
+        child:
+        Text(
+          'Decembre',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25),
+        ),)
+  );
 
+}
   @override
   Widget build(BuildContext context) {
+  months();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          title: Text('Tuto Stepper '),
+          title: Text('Tuto DropDownlist '),
           centerTitle: true,
           actions: <Widget>[
             Icon(
@@ -87,36 +166,38 @@ class _GestionFactureState extends State<GestionFacture> {
             ),
           ],
         ),
-        body: Stepper(
-          currentStep: this.initialstep,
-          steps: steps,
-          type: StepperType.vertical,
-          onStepTapped: (Step){
-            setState(() {
-              initialstep=Step;
-            });
-          },
-          onStepContinue: () {
-            setState(() {
-              if(initialstep<steps.length-1){
-                initialstep=initialstep+1;
-    }
-              else{
-                initialstep=0;
-              }
-            });
-          },
-          onStepCancel: () {
-            setState(() {
-              if(initialstep>0){
-                initialstep=initialstep-1;
-              }
-              else{
-                initialstep=0;
-              }
-            });
+        body: Container(
+            child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                child: DropdownButton(
+                    value: def,
+                    elevation: 10,
+                    items: listmonths,
+                    hint: Text(
+                      'Selectionnez le mois',
+                      style: TextStyle(
+                          color: Colors.blue, fontWeight: FontWeight.bold),
+                    ),
+                    onChanged: (value){
+                      def=value;
+                      setState(() {
 
-          },
-    ));
+                      });
+                    }),
+              ),
+              Container(
+                padding: EdgeInsets.all(25),
+                child: Text(
+                  'Le mois est : $def',
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
+        )));
   }
 }
