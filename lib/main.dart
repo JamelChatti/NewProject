@@ -1,7 +1,5 @@
-import 'dart:ui';
-import'package:flutter/src/material/dropdown.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating/flutter_rating.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter DropDownlist',
+      title: 'Flutter Demo',
       //   primarySwatch: Colors.blue,
       // theme: ThemeData(
       // ),
@@ -25,139 +23,73 @@ class GestionFacture extends StatefulWidget {
 }
 
 class _GestionFactureState extends State<GestionFacture> {
-  List<DropdownMenuItem<String>> listmonths = [];
-  String def = null;
-void months(){
-  listmonths.clear();
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Janvier',
-        child:
-      Text(
-        'Janvier',
-        style: TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 25),
-      ),)
-      );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Fevrier',
-        child:
-        Text(
-          'Fevrier',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Mars',
-        child:
-        Text(
-          'Mars',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Avril',
-        child:
-        Text(
-          'Avril',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Mai',
-        child:
-        Text(
-          'Mai',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Juin',
-        child:
-        Text(
-          'Juin',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Juillet',
-        child:
-        Text(
-          'Juillet',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Aout',
-        child:
-        Text(
-          'Aout',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Septembre',
-        child:
-        Text(
-          'Septembre',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Octobre',
-        child:
-        Text(
-          'Octobre',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Novembre',
-        child:
-        Text(
-          'Novembre',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
-  listmonths.add(
-      DropdownMenuItem(
-        value : 'Decembre',
-        child:
-        Text(
-          'Decembre',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25),
-        ),)
-  );
 
-}
+  int maxstar= 5;
+  double rating1=0;
+  double rating2=2;
+  double rating3=4;
+  double rating4=3;
+
+  Widget detail(String image, String hotel, double rate, Color color) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: Row(
+              children: <Widget>[
+                Image.network(
+                  image,
+                  fit: BoxFit.fill,
+                  width: 340,
+                  height: 300,
+                )
+              ],
+            ),
+          ),
+          Container(
+            child: Row(
+              children: <Widget>[
+                Text(
+                  hotel,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                StarRating(size: 40.0,
+                  color: color,
+                  borderColor: color,
+                  rating: rate,
+                  starCount: maxstar,
+                  onRatingChanged: (rate){
+                  setState(() {
+                    if(color== Colors.blue ){
+                      rating1=rate;
+                    }
+                    if(color== Colors.green ){
+                      rating2=rate;
+                    }
+                    if(color== Colors.purple ){
+                      rating3=rate;
+                    }
+                    if(color== Colors.red ){
+                      rating4=rate;
+                    }
+
+                  });
+                  },
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-  months();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          title: Text('Tuto DropDownlist '),
+          title: Text('Tuto Rating '),
           centerTitle: true,
           actions: <Widget>[
             Icon(
@@ -166,38 +98,25 @@ void months(){
             ),
           ],
         ),
-        body: Container(
-            child: Center(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          padding: EdgeInsets.all(10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Center(
-                child: DropdownButton(
-                    value: def,
-                    elevation: 10,
-                    items: listmonths,
-                    hint: Text(
-                      'Selectionnez le mois',
-                      style: TextStyle(
-                          color: Colors.blue, fontWeight: FontWeight.bold),
-                    ),
-                    onChanged: (value){
-                      def=value;
-                      setState(() {
-
-                      });
-                    }),
-              ),
-              Container(
-                padding: EdgeInsets.all(25),
-                child: Text(
-                  'Le mois est : $def',
-                  style: TextStyle(
-                      color: Colors.blue, fontWeight: FontWeight.bold),
-                ),
-              )
+              detail( 'https://tse3.mm.bing.net/th?id=OIP.7vNRZsWMzjHGdnI1e3R2SAHaDR&pid=Api&P=0&w=350&h=156',
+                  'Hotel de luxe',
+                  rating1, Colors.blue),
+              detail( 'https://tse4.mm.bing.net/th?id=OIP.bn-fTqkNQGF1BW4NsiMgvwHaC9&pid=Api&P=0&w=404&h=162',
+                  'Hotel prestige',
+                  rating2, Colors.green),
+              detail( 'https://tse2.mm.bing.net/th?id=OIP.zi6hidDxa2dYiJAc00hLlAHaFX&pid=Api&P=0&w=220&h=160',
+                  'Hotel King',
+                  rating3, Colors.purple),
+              detail( 'https://tse2.mm.bing.net/th?id=OIP.7RDFtwNmlgkt0T16IlZ0iQHaFU&pid=Api&P=0&w=248&h=179',
+                  'Hotel Palace',
+                  rating4, Colors.red),
             ],
           ),
-        )));
+        ));
   }
 }
